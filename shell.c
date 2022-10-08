@@ -71,7 +71,7 @@ runcmd(struct cmd *cmd)
     rcmd = (struct redircmd*)cmd;
     // fprintf(stderr, "redir not implemented\n");
     // Your code here ...
-    int file = open(rcmd->file,O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
+    int file = open(rcmd->file,rcmd->mode,00644);
     dup2(file, rcmd->fd);
     runcmd(rcmd->cmd);
     break;
