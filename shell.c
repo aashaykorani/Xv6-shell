@@ -87,14 +87,14 @@ runcmd(struct cmd *cmd)
         exit(0);
     else if (pid == 0){
         close(p[0]);
-        dup2(p[1],0);
+        dup2(p[1],1);
         runcmd(pcmd->left);
         close(p[1]);
         // exit(0);
     }
     else {
-        dup2(p[0], 1);
         close(p[1]);
+        dup2(p[0], 0);
         runcmd(pcmd->right);
         close(p[0]);
         // exit(0);
