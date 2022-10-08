@@ -59,11 +59,12 @@ runcmd(struct cmd *cmd)
 
   case ' ':
     ecmd = (struct execcmd*)cmd;
+    printf("%s\n",*ecmd->argv);
     if(ecmd->argv[0] == 0)
       exit(0);
     fprintf(stderr, "exec not implemented\n");
     // Your code here ...
-    exec
+    // execv(ecmd->argv[0],ecmd->argv);
     break;
 
   case '>':
