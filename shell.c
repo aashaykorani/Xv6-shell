@@ -80,6 +80,31 @@ runcmd(struct cmd *cmd)
     pcmd = (struct pipecmd*)cmd;
     fprintf(stderr, "pipe not implemented\n");
     // Your code here ...
+
+    int pipeId = fork();                                //fork creates exact copy of the parent process
+
+    if ( pipeId < 0)
+    {
+        fprintf(stderr, "fork error, it has failed\n");
+        exit(0);
+    }
+
+    else if (pipeId == 0)                           // when we are reading to left
+    {
+      close(p[0]);
+      dup2(p[1], STDOUT_FILENO);                    //duplicate the file
+      runcmd(pcmd->left);                           //run the command to left
+      close(p[1]);
+    }
+      
+    else                                            // when we are reading to right
+    {
+      close(p[1]);
+      dup2(p[0], STDIN_FILENO);                     //duplicate the file
+      runcmd(pcmd->right);                          //run the command to right
+      close(p[0]);
+    }
+    wait(&pipeId);
     break;
   }    
   exit(0);
