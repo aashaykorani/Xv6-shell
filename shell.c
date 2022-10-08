@@ -71,7 +71,8 @@ runcmd(struct cmd *cmd)
     rcmd = (struct redircmd*)cmd;
     fprintf(stderr, "redir not implemented\n");
     // Your code here ...
-    dup2(int fd, int fd2)
+    
+    dup2();
     runcmd(rcmd->cmd);
     break;
 
