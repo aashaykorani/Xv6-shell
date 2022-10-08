@@ -78,7 +78,7 @@ runcmd(struct cmd *cmd)
 
   case '|':
     pcmd = (struct pipecmd*)cmd;
-    fprintf(stderr, "pipe not implemented\n");
+    // fprintf(stderr, "pipe not implemented\n");
     // Your code here ...
 
     int pipeId = fork();                                //fork creates exact copy of the parent process
