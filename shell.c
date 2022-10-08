@@ -59,10 +59,9 @@ runcmd(struct cmd *cmd)
 
   case ' ':
     ecmd = (struct execcmd*)cmd;
-    printf("%s\n",ecmd->argv[0]);
     if(ecmd->argv[0] == 0)
       exit(0);
-    fprintf(stderr, "exec not implemented\n");
+    // fprintf(stderr, "exec not implemented\n");
     // Your code here ...
     execvp(ecmd->argv[0],ecmd->argv);
     break;
