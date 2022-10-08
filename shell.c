@@ -86,19 +86,20 @@ runcmd(struct cmd *cmd)
     if (pid == -1)
         exit(0);
     else if (pid == 0){
-        dup2(p[0],0);
-        close(p[1]);
+        close(p[0]);
+        dup2(p[1],0);
         runcmd(pcmd->left);
-        close(p[0])
-        exit(0);
+        close(p[1]);
+        // exit(0);
     }
     else {
-        dup2(p[1], 1);
-        close(p[0]);
+        dup2(p[0], 1);
+        close(p[1]);
         runcmd(pcmd->right);
-        waitpid(pid,0,0);
-        exit(0);
+        close(p[0]);
+        // exit(0);
     }
+    wait(&pid);
     break;
   }    
   exit(0);
