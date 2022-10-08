@@ -1,7 +1,0 @@
-a.txt
-compile.sh
-core
-README.md
-shell
-shell.c
-words.txt
