@@ -80,20 +80,24 @@ runcmd(struct cmd *cmd)
     pcmd = (struct pipecmd*)cmd;
     // fprintf(stderr, "pipe not implemented\n");
     // Your code here ..
-    int fd[2];
-    if(pipe(fd)!=0)
+    if(pipe(p)!=0)
         exit(0);
     int pid = fork();
     if (pid == -1)
         exit(0);
     else if (pid == 0){
-        dup2(fd[0],0);
-        close(fd[1]);
+        dup2(p[0],0);
+        close(p[1]);
         runcmd(pcmd->left);
+        close(p[0])
         exit(0);
     }
     else {
-        
+        dup2(p[1], 1);
+        close(p[0]);
+        runcmd(pcmd->right);
+        waitpid(pid,0,0);
+        exit(0);
     }
     break;
   }    
