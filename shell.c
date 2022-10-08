@@ -87,8 +87,13 @@ runcmd(struct cmd *cmd)
     if (pid == -1)
         exit(0);
     else if (pid == 0){
+        dup2(fd[0],0);
         close(fd[1]);
         runcmd(pcmd->left);
+        exit(0);
+    }
+    else {
+        
     }
     break;
   }    
