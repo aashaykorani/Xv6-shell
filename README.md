@@ -3,7 +3,7 @@
 ## Code and Report
 Click [here](https://github.com/aashaykorani/XV6-shell/blob/main/shell.c) to see the code.
 
-Click [here](https://github.com/aashaykorani/XV6-shell/blob/main/Shell-report.pdf) to my report for this project.
+Click [here](https://github.com/aashaykorani/XV6-shell/blob/main/Shell-report.pdf) to see my report for this project.
 
 ## Part 1 - Command Execution
 Implement basic command execution by filling in the code inside of the case ‘ ‘  blocking the runcmd function. You will want to look at the manual page for the exec(3) function by typing "man 3 exec" (Note: throughout this course, when referring to commands that one can look up in the man pages, we will typically specify the section number in parentheses -- thus, since exec is found in section 3, we will say exec(3)). 
